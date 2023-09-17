@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AutenticacaoService } from 'src/app/autenticacao/autenticacao.service';
 
 @Component({
@@ -10,10 +11,10 @@ export class LoginComponent {
 
   usuario = '';
   senha = '';
-constructor(private authService: AutenticacaoService){}
+constructor(private authService: AutenticacaoService, private router: Router){}
   login() {
     this.authService.autenticar(this.usuario, this.senha).subscribe(()=>{
-      console.log('SUCESSO');
+      this.router.navigate(['animais']);
     },
     (error) => {
       alert('Usuario ou senha invalida');
